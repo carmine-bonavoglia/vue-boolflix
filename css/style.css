@@ -25,4 +25,12 @@ header{
     border: 1px solid black;
     text-align: center;
 }
+
+.poster-empty{
+    width: 320px;
+}
+
+.flag{
+    width: 50px;
+}
 /* /Corpo Principale */

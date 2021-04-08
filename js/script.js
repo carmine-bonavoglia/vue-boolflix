@@ -5,8 +5,8 @@ var app = new Vue({
         query: '',
         apiKey: 'e007abdb4b5f8eb1e794adb5578a0d8f',
         lang: 'it-IT',
-        searchMovie: [],
-        searchTv: []
+        searched: [],
+        availableFlags: ['it', 'en', 'fr', 'ja']
     },
 
     methods:{
@@ -20,8 +20,8 @@ var app = new Vue({
                     }
                 })
                 .then((result) => {
-                    this.searchMovie = result.data.results;
-                    console.log(this.searchMovie);
+                    this.searched = result.data.results;
+                    console.log(this.searched);
                 })
                 .catch((error) => alert('Errore!'));
 
@@ -34,10 +34,21 @@ var app = new Vue({
                     }
                 })
                 .then((result) => {
-                    this.searchTv = result.data.results;
-                    console.log(this.searchTv);
+                    this.searched =  this.searched.concat(result.data.results);
                 })
                 .catch((error) => alert('Errore!'));
+        },
+
+        getVote(vote){
+            return parseInt(vote/2);
+        },
+
+        getFlag(lang){
+            return `img/${lang}.png`;
+        },
+
+        getPoster(poster){
+            return `https://image.tmdb.org/t/p/w342/${poster}`;
         }
     }
 });

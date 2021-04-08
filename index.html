@@ -13,10 +13,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
     
     <!-- Titolo -->
-    <title>Boolzap</title>
+    <title>Boolflix</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+
+    <!-- CDN Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
 
     <!-- Collegamento CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -32,17 +35,25 @@
         <!-- /Header -->
 
         <!-- Corpo Principale -->
-        <div v-for="movie in searchMovie" class="box-clip">
-            <h2>{{movie.title}}</h2>
-            <h2>{{movie.original_title}}</h2>
-            <h4>{{movie.original_language}}</h4>
-            <h4>{{movie.vote_average}}</h4>
-        </div>
-        <div v-for="tv in searchTv" class="box-clip">
-            <h2>{{tv.name}}</h2>
-            <h2>{{tv.original_name}}</h2>
-            <h4>{{tv.original_language}}</h4>
-            <h4>{{tv.vote_average}}</h4>
+        <div class="locandina container">
+            <div v-for="result in searched" class="box-clip">
+                <img v-if="result.poster_path" :src="getPoster(result.poster_path)" alt="Poster Img">
+                <img class="poster-empty" v-else src="img/empty-poster.png" alt="Poster Empty">
+            
+                <h2 v-if="result.title">{{result.title}}</h2>
+                <h2 v-if="result.name">{{result.name}}</h2>
+                <h4 v-if="result.original_title">{{result.original_title}}</h4>
+                <h4 v-if="result.original_name">{{result.original_name}}</h4>
+                <p>Panoramica: {{result.overview}}</p>
+                
+                <div class="stars-container">
+                    <i v-for="i in getVote(result.vote_average)" class="fas fa-star"></i>
+                    <i v-for="i in (5 - getVote(result.vote_average))" class="far fa-star"></i>
+                </div>
+
+                <img class="flag" v-if="availableFlags.includes(result.original_language)" :src="getFlag(result.original_language)" alt="Language">
+                <p v-else>{{result.original_language}}</p>
+            </div>
         </div>
         <!-- /Corpo Principale -->
 
