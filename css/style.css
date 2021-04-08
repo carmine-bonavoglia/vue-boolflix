@@ -1,0 +1,28 @@
+/* Regole generali */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* /Regole generali */
+
+/* Header */
+header{
+    width: 100%;
+    height: 90px;
+    background-color: darkslategrey;
+    display: flex;
+    justify-content: space-between;
+}
+/* /Header */
+
+/* Corpo Principale */
+.box-clip{
+    width: 400px;
+    padding: 30px;
+    border: 1px solid black;
+    text-align: center;
+}
+/* /Corpo Principale */

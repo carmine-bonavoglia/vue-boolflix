@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CDN Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    
+    <!-- CDN Ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+    
+    <!-- Titolo -->
+    <title>Boolzap</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+
+    <!-- Collegamento CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header>
+            <img src="img/logo.png" alt="Logo Boolflix">
+            <input type="text" v-model="query" @keyup.enter="search" placeholder="Cosa vuoi cercare?">
+        </header>
+        <!-- /Header -->
+
+        <!-- Corpo Principale -->
+        <div v-for="movie in searchMovie" class="box-clip">
+            <h2>{{movie.title}}</h2>
+            <h2>{{movie.original_title}}</h2>
+            <h4>{{movie.original_language}}</h4>
+            <h4>{{movie.vote_average}}</h4>
+        </div>
+        <div v-for="tv in searchTv" class="box-clip">
+            <h2>{{tv.name}}</h2>
+            <h2>{{tv.original_name}}</h2>
+            <h4>{{tv.original_language}}</h4>
+            <h4>{{tv.vote_average}}</h4>
+        </div>
+        <!-- /Corpo Principale -->
+
+
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
