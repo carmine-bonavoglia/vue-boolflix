@@ -27,6 +27,7 @@
 
 <body>
     <div id="app">
+        
         <!-- Header -->
         <header>
             <img src="img/logo.png" alt="Logo Boolflix">
@@ -37,26 +38,34 @@
         <!-- Corpo Principale -->
         <div class="locandina container">
             <div v-for="result in searched" class="box-clip">
+
+                <!-- Copertina -->
                 <img v-if="result.poster_path" :src="getPoster(result.poster_path)" alt="Poster Img">
                 <img class="poster-empty" v-else src="img/empty-poster.png" alt="Poster Empty">
-            
+                <!-- /Copertina -->
+                
+                <!-- Nome e Panoramica -->
                 <h2 v-if="result.title">{{result.title}}</h2>
                 <h2 v-if="result.name">{{result.name}}</h2>
                 <h4 v-if="result.original_title">{{result.original_title}}</h4>
                 <h4 v-if="result.original_name">{{result.original_name}}</h4>
                 <p>Panoramica: {{result.overview}}</p>
+                <!-- /Nome e Panoramica -->
                 
+                <!-- Voto -->
                 <div class="stars-container">
                     <i v-for="i in getVote(result.vote_average)" class="fas fa-star"></i>
                     <i v-for="i in (5 - getVote(result.vote_average))" class="far fa-star"></i>
                 </div>
-
+                <!-- /Voto -->
+                
+                <!-- Bandiere -->
                 <img class="flag" v-if="availableFlags.includes(result.original_language)" :src="getFlag(result.original_language)" alt="Language">
                 <p v-else>{{result.original_language}}</p>
+                <!-- /Bandiere -->
             </div>
         </div>
         <!-- /Corpo Principale -->
-
 
     </div>
     <script src="js/script.js"></script>
